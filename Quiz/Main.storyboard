@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="???" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Kc-wS-HDX">
+                                <rect key="frame" x="175" y="209" width="25" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="???" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jm7-wI-4QR">
+                                <rect key="frame" x="175" y="43" width="25" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lJp-Al-BCI">
+                                <rect key="frame" x="138" y="72" width="98" height="30"/>
+                                <state key="normal" title="Next Question"/>
+                                <connections>
+                                    <action selector="ShowNextQuestion:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xJa-C0-YFv"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wLK-x6-Trg">
+                                <rect key="frame" x="141" y="238" width="93" height="30"/>
+                                <state key="normal" title="Show Answer"/>
+                                <connections>
+                                    <action selector="ShowAnswer:" destination="BYZ-38-t0r" eventType="touchUpInside" id="RS4-Fv-zqO"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="0Kc-wS-HDX" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="189" id="8ii-ce-F71"/>
+                            <constraint firstItem="lJp-Al-BCI" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="CGa-3K-hEd"/>
+                            <constraint firstItem="wLK-x6-Trg" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="JRS-HW-rKz"/>
+                            <constraint firstItem="Jm7-wI-4QR" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Prl-AU-z22"/>
+                            <constraint firstItem="0Kc-wS-HDX" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="flf-N3-MPf"/>
+                            <constraint firstItem="lJp-Al-BCI" firstAttribute="top" secondItem="Jm7-wI-4QR" secondAttribute="bottom" constant="8" id="kVC-3d-S0M"/>
+                            <constraint firstItem="Jm7-wI-4QR" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="23" id="uQP-wK-OzX"/>
+                            <constraint firstItem="wLK-x6-Trg" firstAttribute="top" secondItem="0Kc-wS-HDX" secondAttribute="bottom" constant="8" id="ukP-WQ-HIj"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="AnswerLabel" destination="0Kc-wS-HDX" id="UNp-Zv-liR"/>
+                        <outlet property="QuestionLabel" destination="Jm7-wI-4QR" id="5f6-AH-nDZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+</document>
