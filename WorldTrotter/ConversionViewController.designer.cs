@@ -12,9 +12,29 @@ namespace WorldTrotter
 	[Register ("ConversionViewController")]
 	partial class ConversionViewController
 	{
+		[Outlet]
+		UIKit.UILabel CelsiusLabel { get; set; }
+
+		[Outlet]
+		UIKit.UITextField TextField { get; set; }
+
+		[Action ("DismissKeyboard:")]
+		partial void DismissKeyboard (UIKit.UIGestureRecognizer sender);
+
+		[Action ("FarenheitFieldEditingChanged:")]
+		partial void FarenheitFieldEditingChanged (UIKit.UITextField sender);
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (CelsiusLabel != null) {
+				CelsiusLabel.Dispose ();
+				CelsiusLabel = null;
+			}
+
+			if (TextField != null) {
+				TextField.Dispose ();
+				TextField = null;
+			}
 		}
 	}
 }

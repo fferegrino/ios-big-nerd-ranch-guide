@@ -12,5 +12,62 @@ namespace WorldTrotter
 		public ConversionViewController (IntPtr handle) : base (handle)
 		{
 		}
+
+		public override void ViewDidLoad()
+		{
+			base.ViewDidLoad();
+			UpdateCelsiusLabel();
+		}
+
+		double? _farenheitValue;
+		double? FarenheitValue
+		{
+			get { return _farenheitValue; }
+			set { _farenheitValue = value; UpdateCelsiusLabel(); }
+		}
+
+		double? CelsiusValue
+		{
+			get
+			{
+				if (FarenheitValue != null)
+				{
+					var value = FarenheitValue.Value;
+					return (value - 32) * 5 / 9;
+				}
+				return null;
+			}
+		}
+
+		partial void FarenheitFieldEditingChanged(UITextField textField)
+		{
+			var text = textField.Text;
+			double farenheit;
+			if (!String.IsNullOrEmpty(text) && Double.TryParse(text, out farenheit))
+			{
+				FarenheitValue = farenheit;
+			}
+			else
+			{
+				FarenheitValue = null;
+			}
+		}
+
+		partial void DismissKeyboard(UIGestureRecognizer sender)
+		{
+			TextField.ResignFirstResponder();
+		}
+
+		void UpdateCelsiusLabel()
+		{
+			if (CelsiusValue != null)
+			{
+				CelsiusLabel.Text = $"{CelsiusValue.Value}";
+			}
+			else
+			{
+				CelsiusLabel.Text = "???";
+			}
+		}
 	}
 }
