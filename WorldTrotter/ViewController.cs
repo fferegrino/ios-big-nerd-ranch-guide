@@ -23,7 +23,7 @@ namespace WorldTrotter
 			var secondFrame = new CGRect(10, 30, 50, 50);
 			var secondView = new UIView(secondFrame);
 			secondView.BackgroundColor = UIColor.Green;
-			View.AddSubview(secondView);
+			firstView.AddSubview(secondView);
 		}
 	}
 }
