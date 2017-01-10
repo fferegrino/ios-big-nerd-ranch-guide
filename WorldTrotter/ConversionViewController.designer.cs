@@ -9,8 +9,8 @@ using System.CodeDom.Compiler;
 
 namespace WorldTrotter
 {
-	[Register ("ViewController")]
-	partial class ViewController
+	[Register ("ConversionViewController")]
+	partial class ConversionViewController
 	{
 		
 		void ReleaseDesignerOutlets ()
