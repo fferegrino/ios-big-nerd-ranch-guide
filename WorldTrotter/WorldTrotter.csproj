@@ -93,6 +93,14 @@
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\ConvertIcon.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\ConvertIcon.imageset\ConvertIcon.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\ConvertIcon.imageset\ConvertIcon%402x.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\ConvertIcon.imageset\ConvertIcon%403x.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\MapIcon.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\MapIcon.imageset\MapIcon.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\MapIcon.imageset\MapIcon%402x.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\MapIcon.imageset\MapIcon%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
