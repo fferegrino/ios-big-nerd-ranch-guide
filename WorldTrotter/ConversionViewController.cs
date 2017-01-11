@@ -7,7 +7,7 @@ using UIKit;
 
 namespace WorldTrotter
 {
-	public partial class ConversionViewController : UIViewController
+	public partial class ConversionViewController : UIViewController, IUITextFieldDelegate
 	{
 		public ConversionViewController (IntPtr handle) : base (handle)
 		{
@@ -62,11 +62,28 @@ namespace WorldTrotter
 		{
 			if (CelsiusValue != null)
 			{
-				CelsiusLabel.Text = $"{CelsiusValue.Value}";
+				CelsiusLabel.Text = $"{CelsiusValue.Value:0.0}";
 			}
 			else
 			{
 				CelsiusLabel.Text = "???";
+			}
+		}
+
+		[Export("textField:shouldChangeCharactersInRange:replacementString:")]
+		public bool ShouldChangeCharacters(UITextField textField, NSRange range, string replacementString)
+		{
+			var existingDecimalSeparatorIndex = textField.Text.IndexOf('.');
+			var replacementDecimalSeparatorIndex = replacementString.IndexOf('.');
+
+			if (existingDecimalSeparatorIndex >= 0 &&
+			   replacementDecimalSeparatorIndex >= 0)
+			{
+				return false;
+			}
+			else 
+			{
+				return true;
 			}
 		}
 	}
