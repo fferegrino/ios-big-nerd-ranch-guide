@@ -16,6 +16,9 @@ namespace WorldTrotter
 		public override void ViewDidLoad()
 		{
 			base.ViewDidLoad();
+
+			System.Diagnostics.Debug.WriteLine("ConversionViewController loaded its view");
+
 			UpdateCelsiusLabel();
 		}
 

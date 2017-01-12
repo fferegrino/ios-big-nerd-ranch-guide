@@ -95,7 +95,7 @@
         <!--Map-->
         <scene sceneID="6G0-NR-wFN">
             <objects>
-                <viewController id="Xkg-Ot-j6v" sceneMemberID="viewController">
+                <viewController id="Xkg-Ot-j6v" customClass="MapViewController" sceneMemberID="viewController">
                     <mapView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" id="kdq-DJ-VgP">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
