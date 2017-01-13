@@ -1,0 +1,24 @@
+
+/* Class = "UILabel"; text = "degrees Celsius"; ObjectID = "6iv-uM-9vU"; */
+"6iv-uM-9vU.text" = "摂氏";
+
+/* Class = "UITabBarItem"; title = "Convert"; ObjectID = "A6w-8h-71n"; */
+"A6w-8h-71n.title" = "変換する";
+
+/* Class = "UILabel"; text = "is really"; ObjectID = "Pf4-Cz-x6q"; */
+"Pf4-Cz-x6q.text" = "本当に";
+
+/* Class = "UITabBarItem"; title = "Map"; ObjectID = "Y7j-hM-UGd"; */
+"Y7j-hM-UGd.title" = "地図";
+
+/* Class = "UITabBarItem"; title = "Internet"; ObjectID = "b2m-mz-CKM"; */
+"b2m-mz-CKM.title" = "インターネット";
+
+/* Class = "UILabel"; text = "100"; ObjectID = "eWc-JD-zoh"; */
+"eWc-JD-zoh.text" = "100";
+
+/* Class = "UILabel"; text = "degrees Farenheit"; ObjectID = "kzQ-Sd-BWz"; */
+"kzQ-Sd-BWz.text" = "華氏";
+
+/* Class = "UITextField"; placeholder = "value"; ObjectID = "tcm-kn-B7r"; */
+"tcm-kn-B7r.placeholder" = "値";
