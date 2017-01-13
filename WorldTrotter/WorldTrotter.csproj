@@ -70,7 +70,7 @@
     <DefineConstants>DEBUG;ENABLE_TEST_CLOUD;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignKey>iPhone Developer: Antonio Feregrino (ZX3X37UM6C)</CodesignKey>
     <DeviceSpecificBuild>true</DeviceSpecificBuild>
     <MtouchDebug>true</MtouchDebug>
     <MtouchFastDev>true</MtouchFastDev>
@@ -101,6 +101,10 @@
     <ImageAsset Include="Resources\Assets.xcassets\MapIcon.imageset\MapIcon.png" />
     <ImageAsset Include="Resources\Assets.xcassets\MapIcon.imageset\MapIcon%402x.png" />
     <ImageAsset Include="Resources\Assets.xcassets\MapIcon.imageset\MapIcon%403x.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\Internet.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\Internet.imageset\Internet.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\Internet.imageset\Internet%402x.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\Internet.imageset\Internet%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
@@ -127,6 +131,10 @@
     <Compile Include="MapViewController.cs" />
     <Compile Include="MapViewController.designer.cs">
       <DependentUpon>MapViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InternetViewController.cs" />
+    <Compile Include="InternetViewController.designer.cs">
+      <DependentUpon>InternetViewController.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />

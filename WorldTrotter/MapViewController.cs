@@ -3,14 +3,92 @@
 using System;
 
 using Foundation;
+using MapKit;
 using UIKit;
+using CoreGraphics;
 
 namespace WorldTrotter
 {
-	public partial class MapViewController : UIViewController
+	public partial class MapViewController : UIViewController, IMKMapViewDelegate
 	{
 		public MapViewController (IntPtr handle) : base (handle)
 		{
+		}
+
+		MKMapView MapView;
+
+		public override void LoadView()
+		{
+			base.LoadView();
+			MapView = new MKMapView();
+			MapView.Delegate = this;
+			View = MapView;
+
+			var segmentedControl = new UISegmentedControl(
+				new string [] {
+				"Standard",
+				"Hybrid",
+				"Satellite"});
+			segmentedControl.BackgroundColor = UIColor.White.ColorWithAlpha(0.5f);
+			segmentedControl.SelectedSegment = 0;
+
+			segmentedControl.ValueChanged += MapTypeChanged;
+
+			segmentedControl.TranslatesAutoresizingMaskIntoConstraints = false;
+			View.AddSubview(segmentedControl);
+
+			var topConstraint = segmentedControl.TopAnchor.ConstraintEqualTo(TopLayoutGuide.GetBottomAnchor(), 8);
+			// can't find margins property
+			var leadingConstraint = segmentedControl.LeadingAnchor.ConstraintEqualTo(View.LeadingAnchor, 10);
+			var trailingConstraint = segmentedControl.TrailingAnchor.ConstraintEqualTo(View.TrailingAnchor, -10);
+			topConstraint.Active = true;
+			leadingConstraint.Active = true;
+			trailingConstraint.Active = true;
+
+			var showCurrentLocation = new UIButton( new CGRect(x: 100, y: 400, width: 100, height: 50));
+			showCurrentLocation.SetTitle("Current location", UIControlState.Normal);
+			showCurrentLocation.SetTitleColor(UIColor.Black, UIControlState.Normal);
+			showCurrentLocation.TouchUpInside += (sender, e) => 
+			{
+				MapView.ShowsUserLocation = true;
+			};
+			showCurrentLocation.SizeToFit();
+			View.AddSubview(showCurrentLocation);
+			var bottom = showCurrentLocation.BottomAnchor.ConstraintEqualTo(BottomLayoutGuide.GetTopAnchor(), -8);
+			var leading = showCurrentLocation.LeadingAnchor.ConstraintEqualTo(View.LeadingAnchor, 8);
+			var trailing = showCurrentLocation.TrailingAnchor.ConstraintEqualTo(View.TrailingAnchor, -8);
+			bottom.Active = true;
+			leading.Active = true;
+			trailing.Active = true;
+		}
+
+		void MapTypeChanged(object sender, EventArgs e)
+		{
+			var segControl = sender as UISegmentedControl;
+			switch (segControl.SelectedSegment)
+			{
+				case 0:
+					MapView.MapType = MKMapType.Standard;
+					break;
+				case 1:
+					MapView.MapType = MKMapType.Hybrid;
+					break;
+				case 2:
+					MapView.MapType = MKMapType.Satellite;
+					break;
+				default:
+					break;
+			}
+		}
+
+
+
+		[Export("mapView:didUpdateUserLocation:")]
+		public void DidUpdateUserLocation(MKMapView mapView, MKUserLocation userLocation)
+		{
+			var region = new MKCoordinateRegion(userLocation.Coordinate, new MKCoordinateSpan(50, 50));
+			mapView.SetRegion(region, true);
+			System.Diagnostics.Debug.WriteLine("didUpdateUserLocation");
 		}
 
 		public override void ViewDidLoad()

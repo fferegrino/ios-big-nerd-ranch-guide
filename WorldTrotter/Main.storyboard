@@ -90,21 +90,32 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="238" y="-220"/>
+            <point key="canvasLocation" x="238" y="-660"/>
         </scene>
         <!--Map-->
         <scene sceneID="6G0-NR-wFN">
             <objects>
                 <viewController id="Xkg-Ot-j6v" customClass="MapViewController" sceneMemberID="viewController">
-                    <mapView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" id="kdq-DJ-VgP">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    </mapView>
                     <tabBarItem key="tabBarItem" title="Map" image="MapIcon" id="Y7j-hM-UGd"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iNE-fp-p2W" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="238" y="482"/>
+            <point key="canvasLocation" x="238" y="124"/>
+        </scene>
+        <!--Internet-->
+        <scene sceneID="N1K-cc-t2t">
+            <objects>
+                <viewController id="5uN-CI-6KO" customClass="InternetViewController" sceneMemberID="viewController">
+                    <webView key="view" contentMode="scaleToFill" id="mLj-OU-Wdo">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </webView>
+                    <tabBarItem key="tabBarItem" title="Internet" image="Internet" id="b2m-mz-CKM"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zqe-Zs-JGp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="238" y="868"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="j7T-Vm-Zpl">
@@ -119,6 +130,7 @@
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="AUH-h5-i45"/>
                         <segue destination="Xkg-Ot-j6v" kind="relationship" relationship="viewControllers" id="WeQ-In-D00"/>
+                        <segue destination="5uN-CI-6KO" kind="relationship" relationship="viewControllers" id="pEQ-CF-pDy"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iuY-SL-ci7" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -128,6 +140,7 @@
     </scenes>
     <resources>
         <image name="ConvertIcon" width="48" height="32"/>
+        <image name="Internet" width="49" height="33"/>
         <image name="MapIcon" width="48" height="32"/>
     </resources>
 </document>
