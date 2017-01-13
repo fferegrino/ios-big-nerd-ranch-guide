@@ -24,11 +24,15 @@ namespace WorldTrotter
 			MapView.Delegate = this;
 			View = MapView;
 
+			var standardString = NSBundle.MainBundle.LocalizedString("Standard", "Standard map view");
+			var satelliteString = NSBundle.MainBundle.LocalizedString("Satellite", "Satellite map view");
+			var hybridString = NSBundle.MainBundle.LocalizedString("Hybrid", "Hybrid map view");
+
 			var segmentedControl = new UISegmentedControl(
 				new string [] {
-				"Standard",
-				"Hybrid",
-				"Satellite"});
+				standardString,
+				hybridString,
+				satelliteString});
 			segmentedControl.BackgroundColor = UIColor.White.ColorWithAlpha(0.5f);
 			segmentedControl.SelectedSegment = 0;
 
