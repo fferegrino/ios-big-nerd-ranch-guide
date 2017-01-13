@@ -76,8 +76,11 @@ namespace WorldTrotter
 		[Export("textField:shouldChangeCharactersInRange:replacementString:")]
 		public bool ShouldChangeCharacters(UITextField textField, NSRange range, string replacementString)
 		{
-			var existingDecimalSeparatorIndex = textField.Text.IndexOf('.');
-			var replacementDecimalSeparatorIndex = replacementString.IndexOf('.');
+			var currentLocale = NSLocale.CurrentLocale;
+			var decimalSeparator = currentLocale.DecimalSeparator ?? ".";
+
+			var existingDecimalSeparatorIndex = textField.Text.IndexOf(decimalSeparator, StringComparison.CurrentCulture);
+			var replacementDecimalSeparatorIndex = replacementString.IndexOf(decimalSeparator, StringComparison.CurrentCulture);
 
 			if (existingDecimalSeparatorIndex >= 0 &&
 			   replacementDecimalSeparatorIndex >= 0)
