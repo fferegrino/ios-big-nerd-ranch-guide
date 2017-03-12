@@ -35,8 +35,10 @@ namespace Quiz
 				currentQuestionIndex = 0;
 			}
 			var question = questions[currentQuestionIndex];
-			QuestionLabel.Text = question;
+			NextQuestionLabel.Text = question;
 			AnswerLabel.Text = "???";
+
+			AnimateLabelTransitions();
 		}
 
 		partial void ShowAnswer(Foundation.NSObject sender)
@@ -48,7 +50,27 @@ namespace Quiz
 		public override void ViewDidLoad()
 		{
 			base.ViewDidLoad();
-			QuestionLabel.Text = questions[currentQuestionIndex];
+			CurrentQuestionLabel.Text = questions[currentQuestionIndex];
+		}
+
+		public override void ViewWillAppear(bool animated)
+		{
+			base.ViewWillAppear(animated);
+			NextQuestionLabel.Alpha = 0;
+		}
+
+		void AnimateLabelTransitions()
+		{
+			UIView.Animate(0.5, () =>
+			{
+				this.CurrentQuestionLabel.Alpha = 0;
+				this.NextQuestionLabel.Alpha = 1;
+			}, () =>
+			{
+				var oldRef = NextQuestionLabel;
+				NextQuestionLabel = CurrentQuestionLabel;
+				CurrentQuestionLabel = oldRef;
+			});
 		}
 	}
 }

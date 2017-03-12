@@ -16,7 +16,10 @@ namespace Quiz
 		UIKit.UILabel AnswerLabel { get; set; }
 
 		[Outlet]
-		UIKit.UILabel QuestionLabel { get; set; }
+		UIKit.UILabel CurrentQuestionLabel { get; set; }
+
+		[Outlet]
+		UIKit.UILabel NextQuestionLabel { get; set; }
 
 		[Action ("ShowAnswer:")]
 		partial void ShowAnswer (Foundation.NSObject sender);
@@ -26,14 +29,19 @@ namespace Quiz
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (QuestionLabel != null) {
-				QuestionLabel.Dispose ();
-				QuestionLabel = null;
-			}
-
 			if (AnswerLabel != null) {
 				AnswerLabel.Dispose ();
 				AnswerLabel = null;
+			}
+
+			if (NextQuestionLabel != null) {
+				NextQuestionLabel.Dispose ();
+				NextQuestionLabel = null;
+			}
+
+			if (CurrentQuestionLabel != null) {
+				CurrentQuestionLabel.Dispose ();
+				CurrentQuestionLabel = null;
 			}
 		}
 	}
