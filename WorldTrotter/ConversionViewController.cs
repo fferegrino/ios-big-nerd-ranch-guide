@@ -79,6 +79,17 @@ namespace WorldTrotter
 			var currentLocale = NSLocale.CurrentLocale;
 			var decimalSeparator = currentLocale.DecimalSeparator ?? ".";
 
+			if (replacementString.Length == 0)
+				return true;
+
+			NSCharacterSet validCharSet = NSCharacterSet.FromString("0123456789" + decimalSeparator);
+			foreach(char c in replacementString)
+			{
+				if (!validCharSet.Contains(c))
+					return false;
+			}
+
+
 			var existingDecimalSeparatorIndex = textField.Text.IndexOf(decimalSeparator, StringComparison.CurrentCulture);
 			var replacementDecimalSeparatorIndex = replacementString.IndexOf(decimalSeparator, StringComparison.CurrentCulture);
 
