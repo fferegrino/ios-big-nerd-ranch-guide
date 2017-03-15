@@ -43,6 +43,7 @@ namespace Homepwner
 				cell.NameLabel.Text = item.Name;
 				cell.SerialNumberLabel.Text = item.SerialNumber;
 				cell.ValueLabel.Text = item.ValueInDollars.ToString();
+				cell.ValueLabel.TextColor = item.ValueInDollars < 50 ? UIColor.Green : UIColor.Red;
 
 				return cell;
 			}

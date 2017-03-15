@@ -10,5 +10,13 @@ namespace Homepwner
 		public ItemCell(IntPtr handle) : base(handle)
 		{
 		}
+
+		public override void AwakeFromNib()
+		{
+			base.AwakeFromNib();
+			NameLabel.AdjustsFontForContentSizeCategory = true;
+			ValueLabel.AdjustsFontForContentSizeCategory = true;
+			SerialNumberLabel.AdjustsFontForContentSizeCategory = true;
+		}
 	}
 }
