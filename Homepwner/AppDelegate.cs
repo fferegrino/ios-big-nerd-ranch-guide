@@ -20,6 +20,10 @@ namespace Homepwner
 		{
 			// Override point for customization after application launch.
 			// If not required for your application you can safely delete this method
+			var itemStore = new ItemStore();
+
+			var itemsController = Window.RootViewController as ItemsViewController;
+			itemsController.ItemStore = itemStore;
 
 			return true;
 		}
