@@ -24,6 +24,7 @@ namespace Homepwner
 			var insets = new UIEdgeInsets( statusBarHeight, 0, 0, 0);
 			TableView.ContentInset = insets;
 			TableView.ScrollIndicatorInsets = insets;
+			TableView.RowHeight = 65;
 		}
 
 		public override nint RowsInSection(UITableView tableView, nint section)
@@ -35,11 +36,12 @@ namespace Homepwner
 		{
 			if (indexPath.Row < ItemStore.AllItems.Count)
 			{
-				var cell = tableView.DequeueReusableCell("UITableViewCell", indexPath);
+				var cell = tableView.DequeueReusableCell("ItemCell", indexPath) as ItemCell;
 				var item = ItemStore.AllItems[indexPath.Row];
 
-				cell.TextLabel.Text = item.Name;
-				cell.DetailTextLabel.Text = item.ValueInDollars.ToString();
+				cell.NameLabel.Text = item.Name;
+				cell.SerialNumberLabel.Text = item.SerialNumber;
+				cell.ValueLabel.Text = item.ValueInDollars.ToString();
 
 				return cell;
 			}
