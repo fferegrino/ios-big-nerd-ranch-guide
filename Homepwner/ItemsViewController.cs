@@ -86,15 +86,44 @@ namespace Homepwner
 			if (editingStyle == UITableViewCellEditingStyle.Delete)
 			{
 				var item = ItemStore.AllItems[indexPath.Row];
-				ItemStore.RemoveItem(item);
 
-				tableView.DeleteRows(new NSIndexPath[] { indexPath }, UITableViewRowAnimation.Automatic);
+
+				var title = $"Delete {item.Name}";
+				var message = "Are you sure you want to delete this item?";
+
+				var ac = UIAlertController.Create(title, message, UIAlertControllerStyle.ActionSheet);
+
+				var cancelAction = UIAlertAction.Create("Cancel", UIAlertActionStyle.Cancel, null);
+				var deleteAction = UIAlertAction.Create("Delete", UIAlertActionStyle.Destructive, (obj) => 
+				{ 
+					ItemStore.RemoveItem(item);
+					tableView.DeleteRows(new NSIndexPath[] { indexPath }, UITableViewRowAnimation.Automatic);
+				});
+
+				ac.AddAction(deleteAction);
+				ac.AddAction(cancelAction);
+
+				PresentViewController(ac, true, null);
 			}
+		}
+
+		public override string TitleForDeleteConfirmation(UITableView tableView, NSIndexPath indexPath)
+		{
+			return "Remove";
 		}
 
 		public override bool CanMoveRow(UITableView tableView, NSIndexPath indexPath)
 		{
 			return indexPath.Row != ItemStore.AllItems.Count;
+		}
+
+		public override NSIndexPath CustomizeMoveTarget(UITableView tableView, NSIndexPath sourceIndexPath, NSIndexPath proposedIndexPath)
+		{
+			if (proposedIndexPath.Row >= ItemStore.AllItems.Count)
+			{
+				return NSIndexPath.FromRowSection(ItemStore.AllItems.Count - 1, 0);
+			}
+			return proposedIndexPath;
 		}
 
 		public override void MoveRow(UITableView tableView, NSIndexPath sourceIndexPath, NSIndexPath destinationIndexPath)
