@@ -19,7 +19,13 @@ namespace Quiz
 		UIKit.UILabel CurrentQuestionLabel { get; set; }
 
 		[Outlet]
+		UIKit.NSLayoutConstraint CurrentQuestionLabelCenterXConstraint { get; set; }
+
+		[Outlet]
 		UIKit.UILabel NextQuestionLabel { get; set; }
+
+		[Outlet]
+		UIKit.NSLayoutConstraint NextQuestionLabelCenterXConstraint { get; set; }
 
 		[Action ("ShowAnswer:")]
 		partial void ShowAnswer (Foundation.NSObject sender);
@@ -34,14 +40,24 @@ namespace Quiz
 				AnswerLabel = null;
 			}
 
+			if (CurrentQuestionLabel != null) {
+				CurrentQuestionLabel.Dispose ();
+				CurrentQuestionLabel = null;
+			}
+
 			if (NextQuestionLabel != null) {
 				NextQuestionLabel.Dispose ();
 				NextQuestionLabel = null;
 			}
 
-			if (CurrentQuestionLabel != null) {
-				CurrentQuestionLabel.Dispose ();
-				CurrentQuestionLabel = null;
+			if (NextQuestionLabelCenterXConstraint != null) {
+				NextQuestionLabelCenterXConstraint.Dispose ();
+				NextQuestionLabelCenterXConstraint = null;
+			}
+
+			if (CurrentQuestionLabelCenterXConstraint != null) {
+				CurrentQuestionLabelCenterXConstraint.Dispose ();
+				CurrentQuestionLabelCenterXConstraint = null;
 			}
 		}
 	}

@@ -51,6 +51,8 @@ namespace Quiz
 		{
 			base.ViewDidLoad();
 			CurrentQuestionLabel.Text = questions[currentQuestionIndex];
+
+			UpdateOffScreenLabel();
 		}
 
 		public override void ViewWillAppear(bool animated)
@@ -61,16 +63,41 @@ namespace Quiz
 
 		void AnimateLabelTransitions()
 		{
-			UIView.Animate(0.5, () =>
-			{
-				this.CurrentQuestionLabel.Alpha = 0;
-				this.NextQuestionLabel.Alpha = 1;
-			}, () =>
-			{
-				var oldRef = NextQuestionLabel;
-				NextQuestionLabel = CurrentQuestionLabel;
-				CurrentQuestionLabel = oldRef;
-			});
+			View.LayoutIfNeeded();
+
+			var screenWidth = View.Frame.Width;
+			NextQuestionLabelCenterXConstraint.Constant = 0;
+			CurrentQuestionLabelCenterXConstraint.Constant += screenWidth;
+			
+			UIView.Animate(duration: 0.5, 
+			               delay: 0, 
+			               options: UIViewAnimationOptions.CurveLinear,
+			               animation: () =>
+							{
+								this.CurrentQuestionLabel.Alpha = 0;
+								this.NextQuestionLabel.Alpha = 1;
+
+								View.LayoutIfNeeded();
+
+							}, 
+			               completion: () =>
+							{
+								var oldLabelReference = NextQuestionLabel;
+								NextQuestionLabel = CurrentQuestionLabel;
+								CurrentQuestionLabel = oldLabelReference;
+
+								var oldLabelConstraintReference = NextQuestionLabelCenterXConstraint;
+								NextQuestionLabelCenterXConstraint = CurrentQuestionLabelCenterXConstraint;
+								CurrentQuestionLabelCenterXConstraint = oldLabelConstraintReference;
+
+								UpdateOffScreenLabel();
+							});
+		}
+
+		void UpdateOffScreenLabel()
+		{
+			var screenWidth = View.Frame.Width;
+			NextQuestionLabelCenterXConstraint.Constant = -screenWidth;
 		}
 	}
 }
