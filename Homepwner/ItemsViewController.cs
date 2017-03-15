@@ -24,7 +24,8 @@ namespace Homepwner
 			var insets = new UIEdgeInsets( statusBarHeight, 0, 0, 0);
 			TableView.ContentInset = insets;
 			TableView.ScrollIndicatorInsets = insets;
-			TableView.RowHeight = 65;
+			TableView.RowHeight = UITableView.AutomaticDimension;
+			TableView.EstimatedRowHeight = 65;
 		}
 
 		public override nint RowsInSection(UITableView tableView, nint section)
