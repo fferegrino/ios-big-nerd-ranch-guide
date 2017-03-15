@@ -49,5 +49,57 @@ namespace Homepwner
 			}
 
 		}
+
+		[Action("AddNewItem:")]
+		void AddNewItem(Foundation.NSObject sender)
+		{
+			var newItem = ItemStore.CreateItem();
+			var indexPath = NSIndexPath.FromItemSection(ItemStore.AllItems.Count -1, 0);
+			TableView.InsertRows(new[] { indexPath }, UITableViewRowAnimation.Automatic);
+		}
+
+		[Action("ToggleEditingMode:")]
+		void ToggleEditingMode(Foundation.NSObject sender)
+		{
+			var sndr = sender as UIButton;
+			if (Editing)
+			{
+				sndr.SetTitle("Edit", UIControlState.Normal);
+
+				SetEditing(false, true);
+			}
+			else
+			{
+				sndr.SetTitle("Done", UIControlState.Normal);
+
+				SetEditing(true, true);
+			}
+		}
+
+		public override bool CanEditRow(UITableView tableView, NSIndexPath indexPath)
+		{
+			return indexPath.Row != ItemStore.AllItems.Count;
+		}
+
+		public override void CommitEditingStyle(UITableView tableView, UITableViewCellEditingStyle editingStyle, NSIndexPath indexPath)
+		{
+			if (editingStyle == UITableViewCellEditingStyle.Delete)
+			{
+				var item = ItemStore.AllItems[indexPath.Row];
+				ItemStore.RemoveItem(item);
+
+				tableView.DeleteRows(new NSIndexPath[] { indexPath }, UITableViewRowAnimation.Automatic);
+			}
+		}
+
+		public override bool CanMoveRow(UITableView tableView, NSIndexPath indexPath)
+		{
+			return indexPath.Row != ItemStore.AllItems.Count;
+		}
+
+		public override void MoveRow(UITableView tableView, NSIndexPath sourceIndexPath, NSIndexPath destinationIndexPath)
+		{
+			ItemStore.MoveItem(sourceIndexPath.Row, destinationIndexPath.Row);
+		}
 	}
 }

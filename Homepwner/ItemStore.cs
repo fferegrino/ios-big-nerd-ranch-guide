@@ -8,10 +8,6 @@ namespace Homepwner
 		public ItemStore()
 		{
 			AllItems = new List<Item>();
-			for (int i = 0; i < 5; i++)
-			{
-				CreateItem();
-			}
 		}
 
 		public List<Item> AllItems { get; set; }
@@ -21,6 +17,23 @@ namespace Homepwner
 			var newItem = new Item(true);
 			AllItems.Add(newItem);
 			return newItem;
+		}
+
+		public void RemoveItem(Item item)
+		{
+			if (AllItems.Contains(item))
+			{
+				AllItems.Remove(item);
+			}
+		}
+
+		public void MoveItem(int from, int to)
+		{
+			if (from == to)
+				return;
+			var item = AllItems[from];
+			AllItems.RemoveAt(from);
+			AllItems.Insert(to, item);
 		}
 	}
 }
