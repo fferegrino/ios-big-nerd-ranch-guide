@@ -1,10 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1217" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="UPD-nE-I0o">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="UPD-nE-I0o">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -52,7 +51,7 @@
                                 <rect key="frame" x="0.0" y="88" width="375" height="65"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gJs-Qe-Zfj" id="PW7-nt-5qh">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="64.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="65"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4GY-U6-M5M">
@@ -88,13 +87,14 @@
                                     <outlet property="NameLabel" destination="4GY-U6-M5M" id="4J8-gI-7FW"/>
                                     <outlet property="SerialNumberLabel" destination="LWp-zF-exJ" id="Pvz-JO-Anh"/>
                                     <outlet property="ValueLabel" destination="wGF-Vv-l3t" id="QFt-ZP-BQj"/>
+                                    <segue destination="Pt8-a6-43c" kind="show" identifier="ShowItem" id="3C3-sf-1Nf"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NoMoreItemsCellView" id="DE9-Rc-JGA">
                                 <rect key="frame" x="0.0" y="153" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DE9-Rc-JGA" id="5QL-bt-ktT">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No more items!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ba5-e8-i9a">
@@ -121,10 +121,10 @@
             </objects>
             <point key="canvasLocation" x="-609" y="-28"/>
         </scene>
-        <!--View Controller-->
+        <!--Detail View Controller-->
         <scene sceneID="BIB-RL-3L4">
             <objects>
-                <viewController id="Pt8-a6-43c" sceneMemberID="viewController">
+                <viewController id="Pt8-a6-43c" customClass="DetailViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="WL9-V0-eJW"/>
                         <viewControllerLayoutGuide type="bottom" id="Qjh-jU-wpa"/>
@@ -208,6 +208,12 @@
                             <constraint firstAttribute="trailing" secondItem="2qg-Bc-i3K" secondAttribute="trailing" constant="20" symbolic="YES" id="TJw-1M-n71"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="DateLabel" destination="Dd4-sy-Uyu" id="rsU-lk-ELj"/>
+                        <outlet property="NameField" destination="mzm-Ig-27H" id="kDp-pg-hVd"/>
+                        <outlet property="SerialNumberField" destination="xuh-7o-6Bl" id="3Vo-4q-MY5"/>
+                        <outlet property="ValueField" destination="C4c-eQ-Ur9" id="Wqm-Cj-kRd"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z6i-kQ-9nl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

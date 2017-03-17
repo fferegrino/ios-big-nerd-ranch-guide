@@ -134,5 +134,24 @@ namespace Homepwner
 		{
 			ItemStore.MoveItem(sourceIndexPath.Row, destinationIndexPath.Row);
 		}
+
+		public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
+		{
+			switch (segue.Identifier)
+			{
+				case "ShowItem":
+					var row = TableView.IndexPathForSelectedRow?.Row;
+					if (row.HasValue)
+					{
+						var item = ItemStore.AllItems[row.Value];
+						var detailViewController = segue.DestinationViewController as DetailViewController;
+						detailViewController.Item = item;
+					}
+					break;
+					default:
+						throw new InvalidOperationException("Unexpected segue identifier");
+			}
+			base.PrepareForSegue(segue, sender);
+		}
 	}
 }
