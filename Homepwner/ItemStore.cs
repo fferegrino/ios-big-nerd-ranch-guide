@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using Foundation;
 
 namespace Homepwner
 {
@@ -7,10 +9,28 @@ namespace Homepwner
 	{
 		public ItemStore()
 		{
-			AllItems = new List<Item>();
+			//AllItems = new List<Item>();
+
+			var documentDirectories = NSFileManager.DefaultManager.GetUrls(NSSearchPathDirectory.DocumentDirectory, 
+			                                                               NSSearchPathDomain.User);
+			var documentDirectory = documentDirectories.First();
+			ItemArchiveUrl = documentDirectory.AppendPathExtension("items.archive");
+
+			var allItemsSerialized = NSKeyedUnarchiver.UnarchiveFile(ItemArchiveUrl.Path) as NSString;
+			if (allItemsSerialized != null)
+			{
+				var str = allItemsSerialized.ToString();
+				AllItems =  Newtonsoft.Json.JsonConvert.DeserializeObject<List<Item>>(str);
+			}
+			else
+			{
+				AllItems = new List<Item>();
+			}
+
 		}
 
 		public List<Item> AllItems { get; set; }
+		NSUrl ItemArchiveUrl { get; set; }
 
 		public Item CreateItem()
 		{
@@ -34,6 +54,13 @@ namespace Homepwner
 			var item = AllItems[from];
 			AllItems.RemoveAt(from);
 			AllItems.Insert(to, item);
+		}
+
+		public bool SaveChanges() 
+		{ 
+			System.Diagnostics.Debug.WriteLine($"Saving items to {ItemArchiveUrl.Path}");
+			var allItems = Newtonsoft.Json.JsonConvert.SerializeObject(AllItems);
+			return NSKeyedArchiver.ArchiveRootObjectToFile(new NSString(allItems), ItemArchiveUrl.Path);
 		}
 	}
 }

@@ -16,17 +16,19 @@ namespace Homepwner
 			set;
 		}
 
+		public ItemStore ItemStore { get; set; }
+
 		public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)
 		{
 			// Override point for customization after application launch.
 			// If not required for your application you can safely delete this method
-			var itemStore = new ItemStore();
+			ItemStore = new ItemStore();
 
 			var imageStore = new ImageStore();
 
 			var navController = Window.RootViewController as UINavigationController;
 			var itemsController = navController.TopViewController as ItemsViewController;
-			itemsController.ItemStore = itemStore;
+			itemsController.ItemStore = ItemStore;
 			itemsController.ImageStore = imageStore;
 
 			return true;
@@ -44,6 +46,15 @@ namespace Homepwner
 		{
 			// Use this method to release shared resources, save user data, invalidate timers and store the application state.
 			// If your application supports background exection this method is called instead of WillTerminate when the user quits.
+			var success = ItemStore.SaveChanges();
+			if (success)
+			{
+				System.Diagnostics.Debug.WriteLine("Saved all of the items");
+			}
+			else
+			{
+				System.Diagnostics.Debug.WriteLine("Could not save any of the Items");
+			}
 		}
 
 		public override void WillEnterForeground(UIApplication application)

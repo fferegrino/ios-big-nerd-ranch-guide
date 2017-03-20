@@ -1,7 +1,9 @@
 ﻿using System;
+using Foundation;
+
 namespace Homepwner
 {
-	public class Item
+	public class Item 
 	{
 		public string Name
 		{
@@ -46,7 +48,12 @@ namespace Homepwner
 		static string[] Nouns = new string[] { "Bear", "Spork", "Mac" };
 		static Random randomGenerator = new Random();
 
-		public Item(bool random = false)
+		public Item()
+		{
+
+		}
+
+		public Item(bool random)
 		{
 			if (random)
 			{
@@ -63,5 +70,26 @@ namespace Homepwner
 				ItemKey = Guid.NewGuid().ToString();
 			}
 		}
+
+		//public void EncodeTo(NSCoder encoder)
+		//{
+		//	encoder.Encode(new NSString(Name), nameof(Name));
+		//	encoder.Encode(DateCreated.Ticks, nameof(DateCreated));
+		//	encoder.Encode(new NSString(ItemKey), nameof(ItemKey));
+		//	encoder.Encode(new NSString(SerialNumber), nameof(SerialNumber));
+
+		//	encoder.Encode(ValueInDollars, nameof(ValueInDollars));
+		//}
+
+		//public Item (NSCoder encoder) 
+		//{
+		//	Name = (encoder.DecodeObject(nameof(Name)) as NSString).ToString();
+		//	var dateCreatedTicks = encoder.DecodeLong(nameof(DateCreated));
+		//	DateCreated = new DateTime(dateCreatedTicks);
+		//	ItemKey = (encoder.DecodeObject(nameof(ItemKey)) as NSString).ToString();
+		//	SerialNumber = (encoder.DecodeObject(nameof(SerialNumber)) as NSString).ToString();
+
+		//	ValueInDollars = encoder.DecodeInt(nameof(ValueInDollars));
+		//}
 	}
 }
