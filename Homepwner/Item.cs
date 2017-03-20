@@ -27,12 +27,19 @@ namespace Homepwner
 			set;
 		}
 
+		public string ItemKey
+		{
+			get;
+			set;
+		}
+
 		public Item (string name, int valueInDollars, string serialNumber = null)
 		{
 			Name = name;
 			ValueInDollars = valueInDollars;
 			SerialNumber = serialNumber;
 			DateCreated = DateTime.UtcNow;
+			ItemKey = Guid.NewGuid().ToString();
 		}
 
 		static string[] Adjectives = new string[] { "Fluffy", "Rusty", "Shiny" };
@@ -53,6 +60,7 @@ namespace Homepwner
 				ValueInDollars = randomGenerator.Next(0, 100);
 				SerialNumber = Guid.NewGuid().ToString();
 				DateCreated = DateTime.UtcNow;
+				ItemKey = Guid.NewGuid().ToString();
 			}
 		}
 	}

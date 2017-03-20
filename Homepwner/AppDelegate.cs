@@ -22,8 +22,12 @@ namespace Homepwner
 			// If not required for your application you can safely delete this method
 			var itemStore = new ItemStore();
 
-			var itemsController = Window.RootViewController as ItemsViewController;
+			var imageStore = new ImageStore();
+
+			var navController = Window.RootViewController as UINavigationController;
+			var itemsController = navController.TopViewController as ItemsViewController;
 			itemsController.ItemStore = itemStore;
+			itemsController.ImageStore = imageStore;
 
 			return true;
 		}

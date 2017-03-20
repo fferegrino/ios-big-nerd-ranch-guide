@@ -10,10 +10,16 @@ namespace Homepwner
 	public partial class ItemsViewController : UITableViewController
 	{
 		public ItemStore ItemStore { get; set; }
+		public ImageStore ImageStore { get; set; }
 
 		public ItemsViewController (IntPtr handle) : base (handle)
 		{
+			NavigationItem.LeftBarButtonItem = EditButtonItem;
 		}
+
+		//public ItemsViewController()
+		//{
+		//}
 
 		public override void ViewDidLoad()
 		{
@@ -21,9 +27,6 @@ namespace Homepwner
 
 			var statusBarHeight = UIApplication.SharedApplication.StatusBarFrame.Height;
 
-			var insets = new UIEdgeInsets( statusBarHeight, 0, 0, 0);
-			TableView.ContentInset = insets;
-			TableView.ScrollIndicatorInsets = insets;
 			TableView.RowHeight = UITableView.AutomaticDimension;
 			TableView.EstimatedRowHeight = 65;
 		}
@@ -62,24 +65,6 @@ namespace Homepwner
 			TableView.InsertRows(new[] { indexPath }, UITableViewRowAnimation.Automatic);
 		}
 
-		[Action("ToggleEditingMode:")]
-		void ToggleEditingMode(Foundation.NSObject sender)
-		{
-			var sndr = sender as UIButton;
-			if (Editing)
-			{
-				sndr.SetTitle("Edit", UIControlState.Normal);
-
-				SetEditing(false, true);
-			}
-			else
-			{
-				sndr.SetTitle("Done", UIControlState.Normal);
-
-				SetEditing(true, true);
-			}
-		}
-
 		public override bool CanEditRow(UITableView tableView, NSIndexPath indexPath)
 		{
 			return indexPath.Row != ItemStore.AllItems.Count;
@@ -99,8 +84,9 @@ namespace Homepwner
 
 				var cancelAction = UIAlertAction.Create("Cancel", UIAlertActionStyle.Cancel, null);
 				var deleteAction = UIAlertAction.Create("Delete", UIAlertActionStyle.Destructive, (obj) => 
-				{ 
+				{
 					ItemStore.RemoveItem(item);
+					ImageStore.DeleteImage(item.ItemKey);
 					tableView.DeleteRows(new NSIndexPath[] { indexPath }, UITableViewRowAnimation.Automatic);
 				});
 
@@ -145,6 +131,7 @@ namespace Homepwner
 					{
 						var item = ItemStore.AllItems[row.Value];
 						var detailViewController = segue.DestinationViewController as DetailViewController;
+						detailViewController.ImageStore = ImageStore;
 						detailViewController.Item = item;
 					}
 					break;
@@ -152,6 +139,12 @@ namespace Homepwner
 						throw new InvalidOperationException("Unexpected segue identifier");
 			}
 			base.PrepareForSegue(segue, sender);
+		}
+
+		public override void ViewWillAppear(bool animated)
+		{
+			base.ViewWillAppear(animated);
+			TableView.ReloadData();
 		}
 	}
 }
