@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Foundation;
@@ -7,9 +7,13 @@ using UIKit;
 namespace Photorama
 {
     [Register(nameof(PhotoCollectionViewCell))]
-    public class PhotoCollectionViewCell : UICollectionViewCell
+    public partial class PhotoCollectionViewCell : UICollectionViewCell
     {
-        public override void AwakeFromNib()
+		public PhotoCollectionViewCell(IntPtr handle) : base(handle)
+		{
+
+		}
+		public override void AwakeFromNib()
         {
             base.AwakeFromNib();
             Update(null);
@@ -26,9 +30,9 @@ namespace Photorama
         [Outlet]
         private UIActivityIndicatorView Spinner { get; set; }
 
-        void Update(UIImage image)
+        public void Update(UIImage image)
         {
-            if (image == null)
+            if (image != null)
             {
                 Spinner.StopAnimating();
                 ImageView.Image = image;

@@ -7,7 +7,7 @@ using UIKit;
 
 namespace Photorama
 {
-    public partial class PhotosViewController : UIViewController
+    public partial class PhotosViewController : UIViewController, IUICollectionViewDelegate
     {
 
         [Outlet]
@@ -24,6 +24,7 @@ namespace Photorama
         {
             base.ViewDidLoad();
             CollectionView.DataSource = PhotoDataSource;
+			CollectionView.Delegate = this;
             await Store.FetchInterestingPhotos(Completion);
         }
 
@@ -45,5 +46,25 @@ namespace Photorama
 
             return img;
         }
+
+		[Export("collectionView:willDisplayCell:forItemAtIndexPath:")]
+		public async void WillDisplayCell(UICollectionView collectionView, UICollectionViewCell cell, NSIndexPath indexPath)
+		{
+			var photo = PhotoDataSource.Photos[indexPath.Row];
+			var image = await FromUrl(photo.ThumbnailUrl);
+			var currentCell = CollectionView.CellForItem(indexPath) as PhotoCollectionViewCell;
+			System.Diagnostics.Debug.WriteLine("Done");
+			if (currentCell != null && image != null)
+			{
+
+			InvokeOnMainThread(() => { 
+				currentCell.Update(image);
+				});
+			}
+			else
+			{
+				System.Diagnostics.Debug.WriteLine($"Error: {photo.ThumbnailUrl}");
+			}
+		}
     }
 }

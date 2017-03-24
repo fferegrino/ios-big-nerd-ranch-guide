@@ -17,7 +17,7 @@ namespace Photorama
 
         public UICollectionViewCell GetCell(UICollectionView collectionView, NSIndexPath indexPath)
         {
-            var cell = collectionView.DequeueReusableCell("UICollectionViewCell", indexPath) as UICollectionViewCell;
+            var cell = collectionView.DequeueReusableCell("PhotoCollectionViewCell", indexPath) as UICollectionViewCell;
             return cell;
         }
     }
