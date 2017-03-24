@@ -7,14 +7,14 @@ using UIKit;
 
 namespace Photorama
 {
-    [Register(nameof(PhotosViewController))]
     public partial class PhotosViewController : UIViewController
     {
 
         [Outlet]
-        UIKit.UIImageView ImageView { get; set; }
+        UIKit.UICollectionView CollectionView { get; set; }
 
         public PhotoStore Store { get; set; }
+        public PhotoDataSource PhotoDataSource { get; set; } = new PhotoDataSource();
 
         public PhotosViewController(IntPtr handle) : base(handle)
         {
@@ -23,18 +23,14 @@ namespace Photorama
         public override async void ViewDidLoad()
         {
             base.ViewDidLoad();
+            CollectionView.DataSource = PhotoDataSource;
             await Store.FetchInterestingPhotos(Completion);
         }
 
-        private async void Completion(PhotoCollection photoCollection)
+        private void Completion(PhotoCollection collection)
         {
-            var image = await FromUrl(photoCollection.First().ThumbnailUrl);
-            InvokeOnMainThread(() =>
-            {
-                ImageView.Image = image;
-            });
-
-
+            PhotoDataSource.Photos = collection.ToArray();
+            CollectionView.ReloadSections(NSIndexSet.FromIndex(0));
         }
 
         static async Task<UIImage> FromUrl(string uri)

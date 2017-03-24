@@ -14,7 +14,7 @@ namespace Photorama
         {
             Flickr flickrApi = new Flickr(ApiKey);
 
-            var collection = await flickrApi.InterestingnessGetListAsync(perPage: 1);
+            var collection = await flickrApi.InterestingnessGetListAsync();
 
             completion?.Invoke(collection);
         }

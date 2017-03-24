@@ -18,25 +18,60 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="122" translatesAutoresizingMaskIntoConstraints="NO">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                            </imageView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="263" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES">
+                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="2" id="265">
+                                    <size key="itemSize" width="90" height="90"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="2" minY="2" maxX="2" maxY="2"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="264" reuseIdentifier="PhotoCollectionViewCell" customClass="PhotoCollectionViewCell">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="298" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES">
+                                                    <rect key="frame" x="0.0" y="50" width="0.0" height="0.0"/>
+                                                    <constraints>
+                                                        <constraint id="302" firstAttribute="width" constant="90"/>
+                                                        <constraint id="303" firstAttribute="height" constant="90"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="304">
+                                                    <rect key="frame" x="20" y="40" width="20" height="20"/>
+                                                </activityIndicatorView>
+                                            </subviews>
+                                        </view>
+                                        <color key="backgroundColor" colorSpace="calibratedRGB" red="0.611764705882353" green="0.5607843137254902" blue="0.5607843137254902" alpha="1"/>
+                                        <constraints>
+                                            <constraint id="300" firstItem="298" firstAttribute="leading" secondItem="264" secondAttribute="leading"/>
+                                            <constraint id="301" firstItem="264" firstAttribute="bottom" secondItem="298" secondAttribute="bottom"/>
+                                            <constraint id="305" firstItem="304" firstAttribute="leading" secondItem="264" secondAttribute="leading" constant="20"/>
+                                            <constraint id="306" firstItem="264" firstAttribute="bottom" secondItem="304" secondAttribute="bottom" constant="-10"/>
+                                        </constraints>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
                         </subviews>
                         <constraints>
-                            <constraint id="123" firstItem="122" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing"/>
-                            <constraint id="124" firstItem="122" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top"/>
-                            <constraint id="125" firstItem="122" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading"/>
-                            <constraint id="126" firstItem="122" firstAttribute="bottom" secondItem="8bC-Xf-vdC" secondAttribute="bottom"/>
+                            <constraint id="277" firstItem="263" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing"/>
+                            <constraint id="278" firstItem="263" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading"/>
+                            <constraint id="279" firstItem="263" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top"/>
+                            <constraint id="280" firstItem="y3c-jy-aDJ" firstAttribute="bottom" secondItem="263" secondAttribute="top"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="ImageView" destination="122" id="name-outlet-122"/>
+                        <outlet property="CollectionView" destination="263" id="name-outlet-263"/>
                     </connections>
                     <navigationItem title="Photorama" id="260" key="navigationItem"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="0.0" y="0.0"/>
+            <point key="canvasLocation" x="3" y="38"/>
         </scene>
         <scene sceneID="12">
             <objects>

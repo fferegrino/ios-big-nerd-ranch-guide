@@ -90,6 +90,8 @@
     <Compile Include="AppDelegate.cs" />
     <None Include="GettingStarted.Xamarin" />
     <None Include="Info.plist" />
+    <Compile Include="PhotoCollectionViewCell.cs" />
+    <Compile Include="PhotoDataSource.cs" />
     <Compile Include="PhotoStore.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <None Include="packages.config" />

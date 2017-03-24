@@ -10,15 +10,11 @@ using System.CodeDom.Compiler;
 
 namespace Photorama
 {
-    [Register ("PhotosViewController")]
-    partial class PhotosViewController
+    [Register ("PhotoCollectionViewCell")]
+    partial class PhotoCollectionViewCell
     {
         void ReleaseDesignerOutlets ()
         {
-            if (CollectionView != null) {
-                CollectionView.Dispose ();
-                CollectionView = null;
-            }
         }
     }
 }
